@@ -1,0 +1,60 @@
+<div class="modal" data-test="popup" [ngClass]="{'is-active': isOpen}">
+  <div class="modal-background"></div>
+
+  <div class="modal-card" data-test="popup-loading" *ngIf="state === states.LOADING">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Standortabfrage aktivieren</p>
+    </header>
+    <section class="modal-card-body">
+      <app-loader></app-loader>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-primary" disabled>Einrichten</button>
+      <button class="button" disabled>Später</button>
+    </footer>
+  </div>
+
+  <div class="modal-card" data-test="popup-ask" *ngIf="state === states.ASK">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Standortabfrage aktivieren</p>
+      <button class="delete" aria-label="close" (click)="close()"></button>
+    </header>
+    <section class="modal-card-body">
+      <p class="mb-1">Um dir Routen zu deinem Zielort und die Fahrtdauer anzeigen zu können, benötigen wir die Erlaubnis
+        auf deinen
+        aktuellen Standort zugreifen zu können.</p>
+      <p>Wenn du unten auf "Einrichten" klickst, fragt dich dein Gerät einmalig ob auf deinen Standort zugegriffen
+        werden darf. Lehnst du dies ab, wirst du nicht noch einmal gefragt.</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-primary" data-test="popup-ask-action" (click)="activate()">Einrichten</button>
+      <button class="button" data-test="popup-ask-close" (click)="close()">Später</button>
+    </footer>
+  </div>
+
+  <div class="modal-card" data-test="popup-denied" *ngIf="state === states.DENIED">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Standortabfrage deaktiviert</p>
+      <button class="delete" aria-label="close" (click)="close()"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>Du hast die Standortabfrage deaktiviert. Dir werden in der App keine Routen angezeigt.</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button" data-test="popup-denied-close" (click)="close(true)">Schließen</button>
+    </footer>
+  </div>
+
+  <div class="modal-card" data-test="popup-accepted" *ngIf="state === states.ACCEPTED">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Standortabfrage aktiviert</p>
+      <button class="delete" aria-label="close" (click)="close()"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>Du hast die Standortabfrage aktiviert. Du kannst die App in vollem Umfang benutzen</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button" data-test="popup-accepted-close" (click)="close(true)">Schließen</button>
+    </footer>
+  </div>
+</div>

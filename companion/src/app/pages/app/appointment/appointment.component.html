@@ -1,0 +1,74 @@
+<app-geolocation-popup></app-geolocation-popup>
+
+<ng-container *ngIf="appointment$ | withLoading | async as appointment">
+  <!-- LOADING -->
+  <ng-template [ngIf]="appointment.loading">
+    <app-page-loader>Lädt Termin</app-page-loader>
+  </ng-template>
+
+  <!-- ERROR -->
+  <ng-template [ngIf]="appointment.error">
+    <section class="section">
+      <div class="container has-text-danger">
+        <h2 class="is-size-2">Ups!</h2>
+        <h3 class="is-size-4">Beim Laden des Termins ist ein Fehler aufgetreten</h3>
+      </div>
+    </section>
+  </ng-template>
+
+  <!-- VALUE -->
+  <ng-template [ngIf]="appointment.value">
+
+    <!-- NO VALUE -->
+    <ng-container *ngIf="appointment.value.isEmpty()">
+      <section class="section">
+        <div class="container">
+          <h2 class="is-size-2">404</h2>
+          <h3 class="is-size-4">Der Termin konnte nicht gefunden werden</h3>
+        </div>
+      </section>
+    </ng-container>
+
+    <!-- VALUE -->
+    <ng-container *ngIf="appointment.value.get() as appointment">
+      <section class="hero is-primary">
+        <div class="hero-body">
+          <div class="container">
+            <div class="is-flex">
+              <div class="title mr-2">
+                <app-icon name="map-marker-info"></app-icon>
+              </div>
+              <div>
+                <h1 class="title">
+                  {{appointment.getName()}}
+                </h1>
+                <h2 class="subtitle">
+                  {{appointment.getDateTime().format('dddd, DD.MM.YY')}}
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="columns">
+            <div class="column is-full">
+              <app-appointment-overview [appointment]="appointment" [route$]="route$"></app-appointment-overview>
+            </div>
+          </div>
+          <div class="columns">
+            <div class="column">
+              <app-appointment-map [route$]="route$"></app-appointment-map>
+            </div>
+            <div class="column">
+              <app-appointment-navigation [appointment]="appointment"></app-appointment-navigation>
+            </div>
+          </div>
+        </div>
+      </section>
+    </ng-container>
+
+  </ng-template>
+</ng-container>

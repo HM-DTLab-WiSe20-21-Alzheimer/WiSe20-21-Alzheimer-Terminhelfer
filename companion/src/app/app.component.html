@@ -1,0 +1,7 @@
+<app-navigation></app-navigation>
+
+<router-outlet>
+  <ng-container *ngIf="isLoading">
+    <app-page-loader></app-page-loader>
+  </ng-container>
+</router-outlet>

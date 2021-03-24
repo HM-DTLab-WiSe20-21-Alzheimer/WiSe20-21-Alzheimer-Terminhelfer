@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "auth": {
+      "terminhelfer58f55893": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

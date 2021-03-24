@@ -1,0 +1,51 @@
+<nav class="navbar has-shadow is-light">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="/">
+      <img src="/assets/images/logo/logo.svg" width="30" height="30" alt="Logo">
+      <strong class="ml-2">Termin Helfer</strong>
+    </a>
+
+    <a role="button" class="navbar-burger" id="mobilenavtoggle" aria-label="menu" (click)="toggle()">
+      <div data-test="mobile-nav-button" class="is-size-5" style="height: 100%">
+        <div class="is-flex is-align-items-center is-justify-content-center " style="height: 100%; width: 100%">
+          <app-icon name="times" *ngIf="isOpen"></app-icon>
+          <app-icon name="bars" *ngIf="!isOpen"></app-icon>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div data-test="mobile-nav" class="navbar-menu" [ngClass]="{'is-active': isOpen}">
+    <div class="navbar-start">
+      <a class="navbar-item" routerLink="/">Startseite</a>
+      <a class="navbar-item" routerLink="/hilfe">Hilfe</a>
+      <ng-container *ngIf="isLoggedIn | async">
+        <a class="navbar-item" routerLink="/app">Dein Tag</a>
+        <a class="navbar-item" routerLink="app/location">Deine Orte</a>
+      </ng-container>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <ng-container *ngIf="(isLoggedIn | async); then loggedIn else loggedOut"></ng-container>
+
+          <ng-template #loggedIn>
+            <a class="button is-light" data-test="user-logout-button" routerLink="/user/logout">
+              Abmelden
+            </a>
+          </ng-template>
+
+          <ng-template #loggedOut>
+            <a class="button is-primary" data-test="user-signup-button" routerLink="/user/signup">
+              Registrieren
+            </a>
+            <a class="button is-light" data-test="user-login-button" routerLink="/user/login">
+              Anmelden
+            </a>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

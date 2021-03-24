@@ -1,0 +1,38 @@
+{
+    "paths": [
+        {
+            "name": "/appointment",
+            "lambdaFunction": "TerminHelferAppointment",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/GET"
+                ]
+            }
+        }
+    ],
+    "resourceName": "TerminHelferAppointment",
+    "apiName": "TerminHelferAppointment",
+    "functionArns": [
+        {
+            "lambdaFunction": "TerminHelferAppointment"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-terminhelfer-dev-170048-authRole",
+        "unAuthRoleName": "amplify-terminhelfer-dev-170048-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "TerminHelferAppointment",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "775fbca2"
+}

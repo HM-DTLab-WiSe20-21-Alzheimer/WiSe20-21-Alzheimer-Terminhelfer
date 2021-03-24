@@ -1,0 +1,13 @@
+<a class="media" routerLink="."  [fragment]="section" data-test="link">
+  <div class="media-left is-size-2" data-test="icon">
+    <app-icon [name]="icon"></app-icon>
+  </div>
+  <div class="media-content">
+    <h4 class="is-size-5" data-test="title">
+      <ng-content select="[title]"></ng-content>
+    </h4>
+    <p data-test="content">
+      <ng-content select="[content]"></ng-content>
+    </p>
+  </div>
+</a>

@@ -1,0 +1,6 @@
+<a class="button is-primary" data-test="link" [href]="link.get(appointment, position)" target="_blank" rel=noopener>
+  <span class="icon" data-test="icon">
+    <app-icon [name]="link.getIcon()"></app-icon>
+  </span>
+  <span data-test="name">{{link.getName()}}</span>
+</a>

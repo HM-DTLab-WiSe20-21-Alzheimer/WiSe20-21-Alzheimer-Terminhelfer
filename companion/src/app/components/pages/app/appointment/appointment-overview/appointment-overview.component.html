@@ -1,0 +1,116 @@
+<div class="card">
+  <div class="card-content">
+    <div class="level">
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Ort</p>
+          <p class="title">{{appointment?.getLocation()}}</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Uhrzeit</p>
+          <p class="title">{{appointment?.getDateTime()?.format('HH:mm')}}</p>
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Abfahrt</p>
+
+          <ng-container *ngIf="canLoad$ | async">
+            <ng-container *ngIf="route$ | withLoading | async as route">
+
+              <!-- LOADING -->
+              <ng-template [ngIf]="route.loading">
+                <div class="is-flex is-justify-content-center">
+                  <app-loader></app-loader>
+                </div>
+              </ng-template>
+
+              <!-- ERROR -->
+              <ng-template [ngIf]="route.error">
+                <p class="title has-text-danger">
+                  <app-icon name="exclamation-triangle"></app-icon>
+                </p>
+              </ng-template>
+
+              <!-- DATA -->
+              <ng-template [ngIf]="route.value">
+
+                <!-- ROUTE -->
+                <ng-container *ngIf="route.value.get() as route">
+                  <p class="title">{{getDepartmentTime(route)}}</p>
+                </ng-container>
+
+                <!-- NO ROUTE -->
+                <ng-container *ngIf="route.value.isEmpty()">
+                  <p class="title">
+                    ?
+                  </p>
+                </ng-container>
+
+              </ng-template>
+
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="!(canLoad$ | async)">
+            <p class="title">
+              ?
+            </p>
+          </ng-container>
+
+        </div>
+      </div>
+      <div class="level-item has-text-centered">
+        <div>
+          <p class="heading">Fahrdauer</p>
+
+          <ng-container *ngIf="canLoad$ | async">
+            <ng-container *ngIf="route$ | withLoading | async as route">
+
+              <!-- LOADING -->
+              <ng-template [ngIf]="route.loading">
+                <div class="is-flex is-justify-content-center">
+                  <app-loader></app-loader>
+                </div>
+              </ng-template>
+
+              <!-- ERROR -->
+              <ng-template [ngIf]="route.error">
+                <p class="title has-text-danger">
+                  <app-icon name="exclamation-triangle"></app-icon>
+                </p>
+              </ng-template>
+
+              <!-- DATA -->
+              <ng-template [ngIf]="route.value">
+
+                <!-- ROUTE -->
+                <ng-container *ngIf="route.value.get() as route">
+                  <p class="title">{{getDuration(route)}}</p>
+                </ng-container>
+
+                <!-- NO ROUTE -->
+                <ng-container *ngIf="route.value.isEmpty()">
+                  <p class="title">
+                    ?
+                  </p>
+                </ng-container>
+
+              </ng-template>
+
+            </ng-container>
+          </ng-container>
+
+          <ng-container *ngIf="!(canLoad$ | async)">
+            <p class="title">
+              ?
+            </p>
+          </ng-container>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

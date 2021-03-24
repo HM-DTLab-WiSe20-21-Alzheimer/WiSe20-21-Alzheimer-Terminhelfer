@@ -1,0 +1,62 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">E-Mail Bestätigen</h1>
+    <h2 class="subtitle">Bestätige deinen neuen Account</h2>
+
+    <form action="#" [formGroup]="confirmForm" (ngSubmit)="confirm($event)">
+      <div class="field">
+        <label class="label" for="username">Nutzername</label>
+        <div class="control">
+          <input class="input" id="username" name="username" type="text" placeholder="maxmusterman" required
+                 formControlName="username"
+          >
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="code">Bestätigungscode</label>
+        <div class="control">
+          <input class="input" id="code" name="code" type="text" placeholder="123456" required
+                 formControlName="code"
+          >
+        </div>
+      </div>
+
+      <div class="is-grouped is-flex is-align-items-center">
+        <div class="control">
+          <button type="submit" class="button is-primary"
+                  [disabled]="isLoading || confirmForm.invalid"
+                  [ngClass]="{'is-loading': isLoading}"
+          >
+            <span class="icon">
+              <app-icon name="envelope-check"></app-icon>
+            </span>
+            <span>Bestätigen</span>
+
+          </button>
+        </div>
+        <div class="has-text-danger ml-2" *ngIf="(error$ | async)">
+          {{(error$ | async)}}
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="container my-2">
+    <hr>
+  </div>
+  <div class="container ">
+    <div class="media">
+      <div class="media-left">
+        <app-icon name="envelope"></app-icon>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <h4 class="is-bold">Woher kommt der Bestätigungscode?</h4>
+          <p>
+            Der Bestätigungscode wird benutzt um deine E-Mail Adresse zu verifizieren.<br>
+            Der Code wird dir per E-Mail zugesandt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

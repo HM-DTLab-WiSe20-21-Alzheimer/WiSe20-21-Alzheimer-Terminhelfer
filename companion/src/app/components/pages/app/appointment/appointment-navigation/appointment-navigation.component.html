@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-content">
+    <h3 class="title">Navigation</h3>
+
+    <ng-container *ngIf="appointment.canCalculateRoute()">
+
+      <ng-container *ngIf="currentPosition$ | withLoading | async as position">
+
+        <ng-template [ngIf]="position.loading">
+          <app-loader></app-loader>
+        </ng-template>
+
+        <ng-template [ngIf]="position.error">
+          <div data-test="error">Dein aktueller Standort kann nicht ermittelt werden</div>
+        </ng-template>
+
+        <ng-template [ngIf]="position.value">
+          <div class="buttons" data-test="links">
+            <app-appointment-navigation-button [appointment]="appointment"
+                                               [link]="googleMapsLink"
+                                               [position]="position.value.getOrThrow()"
+            ></app-appointment-navigation-button>
+            <app-appointment-navigation-button [appointment]="appointment"
+                                               [link]="appleMapsLink"
+                                               [position]="position.value.getOrThrow()"
+            ></app-appointment-navigation-button>
+            <app-appointment-navigation-button [appointment]="appointment"
+                                               [link]="hereWeGoLink"
+                                               [position]="position.value.getOrThrow()"
+            ></app-appointment-navigation-button>
+          </div>
+        </ng-template>
+
+
+
+      </ng-container>
+
+    </ng-container>
+
+    <div *ngIf="!appointment.canCalculateRoute()">
+      Zu deinem Zielort sind keine Informationen bekannt
+    </div>
+  </div>
+</div>

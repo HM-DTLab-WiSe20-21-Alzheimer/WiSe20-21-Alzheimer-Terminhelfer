@@ -1,0 +1,63 @@
+.companion-api-folder:
+  before_script:
+    - cd "companion/amplify/backend/function/TerminHelferAppointment/src"
+  only:
+    changes:
+      - "companion/amplify/backend/function/TerminHelferAppointment/src/**/*"
+
+.companion-api-node-ops:
+  image: node:current
+  extends:
+    - .companion-api-folder
+  cache:
+    untracked: true
+    key: ${CI_COMMIT_REF_NAME}
+    paths:
+      - .npm/
+  artifacts:
+    untracked: true
+    expire_in: 30 mins
+
+install-deps:
+  stage: build
+  script:
+    - npm ci --cache .npm --prefer-offline
+  extends:
+    - .companion-api-node-ops
+
+test-companion-api:
+  stage: test
+  script:
+    - echo "Execute Jest"
+    - npm run-script test
+  dependencies:
+    - install-deps
+  extends:
+    - .companion-api-node-ops
+
+coverage-companion-api:
+  stage: test
+  dependencies:
+    - install-deps
+  script:
+    - echo "Execute Jest with Coverage"
+    - npm run-script test:coverage
+  extends:
+    - .companion-api-node-ops
+
+sonarqube-companion-api:
+  image: sonarsource/sonar-scanner-cli:latest
+  stage: report
+  dependencies:
+    - test-companion-api
+    - coverage-companion-api
+  script:
+    - echo "Report"
+    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT_KEY_COMPANION_API -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.sources=.
+  extends:
+    - .companion-api-folder
+  only:
+    refs:
+      - master
+    changes:
+      - "companion/amplify/backend/function/TerminHelferAppointment/src/**/*"

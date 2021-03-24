@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card-content">
+    <h3 class="subtitle">
+      Nächster Termin Heute
+    </h3>
+
+    <ng-container *ngIf="appointment$ | withLoading | async as data">
+      <ng-template [ngIf]="data.loading">
+        <p class="title">Wird geladen</p>
+        <div class="level">
+          <div class="level-item has-text-centered">
+            <div>
+              <app-loader [isBig]="true"></app-loader>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template [ngIf]="data.error">
+        <p class="title">Fehler</p>
+        <div class="level">
+          <div class="level-item has-text-centered">
+            <div class="has-text-danger is-size-4">
+              <app-icon name="exclamation-triangle"></app-icon>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <ng-template [ngIf]="data.value">
+
+        <ng-container *ngIf="data.value.isEmpty()">
+          <p class="title">Kein Termin heute</p>
+        </ng-container>
+
+        <ng-container *ngIf="data.value.get() as app">
+          <p class="title">{{app?.getName()}}</p>
+          <div class="level">
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Ort</p>
+                <p class="title">{{app?.getDestination()?.getName()}}</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading">Uhrzeit</p>
+                <p class="title">{{app?.getDateTime()?.format('HH:mm')}}</p>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ng-template>
+    </ng-container>
+  </div>
+
+  <div class="card-footer" *ngIf="appointment$ | withLoading | async as data">
+    <ng-template [ngIf]="data.value && !data.value.isEmpty()">
+      <a class="card-footer-item"
+         [routerLink]="'/app/appointment/' + data.value.get()?.getId()">
+        <span class="mr-1"><app-icon name="info-circle"></app-icon></span> Mehr Infos
+      </a>
+    </ng-template>
+  </div>
+
+</div>

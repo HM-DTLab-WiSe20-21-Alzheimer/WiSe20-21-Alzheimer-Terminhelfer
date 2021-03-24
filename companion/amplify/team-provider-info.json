@@ -1,0 +1,26 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-terminhelfer-dev-170048-authRole",
+      "UnauthRoleArn": "arn:aws:iam::051886484530:role/amplify-terminhelfer-dev-170048-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::051886484530:role/amplify-terminhelfer-dev-170048-authRole",
+      "Region": "eu-central-1",
+      "DeploymentBucketName": "amplify-terminhelfer-dev-170048-deployment",
+      "UnauthRoleName": "amplify-terminhelfer-dev-170048-unauthRole",
+      "StackName": "amplify-terminhelfer-dev-170048",
+      "StackId": "arn:aws:cloudformation:eu-central-1:051886484530:stack/amplify-terminhelfer-dev-170048/4826e180-2e6e-11eb-9e6e-06e1ae64df44",
+      "AmplifyAppId": "d1g51531g83op6"
+    },
+    "categories": {
+      "auth": {
+        "terminhelfer58f55893": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1g51531g83op6",
+          "type": "manual"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+<div class="card">
+  <div class="card-content">
+    <h3 class="title">
+      Orte
+    </h3>
+
+    <div class="table-container">
+      <table class="table is-fullwidth is-striped" aria-label="Übersichtstabelle aller Orte">
+        <colgroup>
+          <col style="width: 200px">
+          <col style="width: 200px">
+          <col style="width: 150px">
+        </colgroup>
+        <thead>
+        <tr>
+          <th scope="col">
+            Name
+          </th>
+          <th scope="col">
+            Straße
+          </th>
+          <th scope="col">
+            Ort
+          </th>
+          <th scope="col">
+            Bevorzugtes Reisemittel
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngIf="locations$ | withLoading | async as locations">
+          <!-- AWAIT -->
+          <ng-template [ngIf]="locations.loading">
+            <tr>
+              <td colspan="4">
+                <app-loader></app-loader>
+              </td>
+            </tr>
+          </ng-template>
+          <!-- CATCH -->
+          <ng-template [ngIf]="locations.error">
+            <tr>
+              <td colspan="4" class="has-text-danger">
+                <span class="mr-2">
+                  <app-icon name="sync-exclamation"></app-icon>
+                </span>
+                Fehler beim Laden deiner Orte
+              </td>
+            </tr>
+          </ng-template>
+
+          <!-- THEN -->
+          <ng-template [ngIf]="locations.value">
+            <ng-template [ngIf]="locations.value.getOrThrow().length <= 0">
+              <tr>
+                <td colspan="4">
+                  <span class="mr-2"><app-icon name="info-circle"></app-icon></span>
+                  Keine Orte
+                </td>
+              </tr>
+            </ng-template>
+            <ng-template [ngIf]="locations.value.getOrThrow().length > 0">
+              <tr *ngFor="let location of locations.value.getOrThrow()">
+                <td>
+                  {{location.getName() || "?"}}
+                </td>
+                <td>
+                  {{location.getStreet() || "-"}}
+                </td>
+                <td>
+                  {{location.getCity() || "-"}}
+                </td>
+                <td>
+                  {{location.getPreferredTransportModeReadable()}}
+                </td>
+              </tr>
+            </ng-template>
+
+          </ng-template>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

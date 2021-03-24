@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-content">
+    <h3 class="title">Dein Weg</h3>
+
+    <ng-container *ngIf="canLoad$ | async">
+      <ng-container *ngIf="route$ | withLoading | async as route">
+
+        <!-- LOADING -->
+        <ng-template [ngIf]="route.loading">
+          <app-loader></app-loader>
+        </ng-template>
+
+        <!-- ERROR -->
+        <ng-template [ngIf]="route.error">
+          Beim Laden der Route ist ein Fehler aufgetreten.
+        </ng-template>
+
+        <!-- VALUE -->
+        <ng-template [ngIf]="route.value">
+
+          <!-- VALUE -->
+          <ng-container *ngIf="!route.value.isEmpty()">
+            <div class="map" #map ></div>
+          </ng-container>
+
+          <!-- NO VALUE -->
+          <div *ngIf="route.value.isEmpty()">
+            Es kann keine Route angezeigt werden
+          </div>
+
+        </ng-template>
+
+      </ng-container>
+    </ng-container>
+
+    <div *ngIf="!(canLoad$ | async)">
+      Dein aktueller Standort kann nicht ermittelt werden
+    </div>
+
+  </div>
+</div>

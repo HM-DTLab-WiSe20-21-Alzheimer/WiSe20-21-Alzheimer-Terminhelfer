@@ -1,0 +1,5 @@
+@import "src/variables";
+
+.hero {
+  background: linear-gradient(155deg, $color-primary, darken($color-primary, 10));
+}

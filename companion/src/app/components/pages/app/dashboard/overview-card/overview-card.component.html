@@ -1,0 +1,96 @@
+<div class="card">
+  <div class="card-content">
+    <h3 class="title">
+      Termine
+
+      <ng-container [ngSwitch]="getDateDiff()">
+        <ng-container *ngSwitchCase="0">Heute</ng-container>
+        <ng-container *ngSwitchCase="1">Morgen</ng-container>
+        <ng-container *ngSwitchCase="-1">Gestern</ng-container>
+        <ng-container *ngSwitchDefault>
+          <ng-container *ngIf="getDateDiff() > 0; else past">in</ng-container>
+          <ng-template #past>vor</ng-template>
+          {{getDateDiffAbs()}} Tagen
+        </ng-container>
+      </ng-container>
+    </h3>
+
+    <div class="table-container">
+      <table class="table is-fullwidth is-striped is-hoverable" aria-label="Übersichtstabelle der Termine">
+        <colgroup>
+          <col style="width: 250px">
+          <col style="width: 150px">
+        </colgroup>
+        <thead>
+        <tr>
+          <th scope="col">
+            Titel
+          </th>
+          <th scope="col">
+            Ort
+          </th>
+          <th scope="col">
+            Uhrzeit
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <ng-container *ngIf="$appointments | withLoading | async as result">
+
+          <ng-template [ngIf]="result.loading">
+            <tr>
+              <td colspan="3">
+                <app-loader></app-loader>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template [ngIf]="result.error">
+            <tr>
+              <td colspan="3" class="has-text-danger">
+                <span class="mr-2"><app-icon name="sync-exclamation"></app-icon></span>Fehler beim Laden
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template [ngIf]="result.value">
+
+            <ng-container *ngIf="result.value.get() as appointments">
+              <tr *ngIf="appointments.length <= 0">
+                <td colspan="3">
+                  <span class="mr-2"><app-icon name="info-circle"></app-icon></span>Keine Termine
+                </td>
+              </tr>
+
+              <tr class="clickable" *ngFor="let appointment of appointments"
+                  [routerLink]="'/app/appointment/' + appointment.getId()">
+                <td>
+                  {{appointment.getName()}}
+                </td>
+                <td>
+                  {{appointment.getDestination().getName()}}
+                </td>
+                <td>
+                  {{appointment.getDateTime().format("HH:mm")}}
+                </td>
+              </tr>
+
+            </ng-container>
+
+          </ng-template>
+
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="card-footer">
+    <a class="card-footer-item" (click)="previousDay()">
+      <span class="mr-1"><app-icon name="angle-left"></app-icon></span> Vorheriger Tag
+    </a>
+    <a class="card-footer-item" (click)="nextDay()">
+      Nächster Tag <span class="mr-1"><app-icon name="angle-right"></app-icon></span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,278 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <div class="is-flex">
+        <div class="title mr-2">
+          <app-icon name="question-circle"></app-icon>
+        </div>
+        <div>
+          <h1 class="title">
+            Hilfe
+          </h1>
+          <h2 class="subtitle">
+            Anleitung für Termin Helfer
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pb-0">
+  <div class="container">
+    <h3 class="is-size-3">Kurzübersicht</h3>
+    <p>
+      Möchtest du eine Kurzübersicht ausdrucken? Lade unten das PDF runter.
+    </p>
+    <div class="pt-2">
+      <a class="button is-primary" href="/assets/documents/Termin_Helfer_Hilfe.pdf" download>
+        <span class="icon">
+          <app-icon name="file-download"></app-icon>
+        </span>
+        <span>Runterladen</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section py-4">
+  <div class="container">
+    <hr>
+  </div>
+</section>
+
+<section class="section py-0">
+  <div class="container">
+    <h3 class="is-size-3">Übersicht</h3>
+    <div class="columns is-multiline">
+      <div class="column is-one-third">
+        <app-help-overview-column icon="chat" section="alexa-skill">
+          <ng-container title>Alexa Skill</ng-container>
+          <ng-container content>Wie richte ich den Alexa Skill ein?</ng-container>
+        </app-help-overview-column>
+      </div>
+      <div class="column is-one-third">
+        <app-help-overview-column icon="apps" section="companion-app">
+          <ng-container title>Begleit-App</ng-container>
+          <ng-container content>Wie richte ich die App ein?</ng-container>
+        </app-help-overview-column>
+      </div>
+      <div class="column is-one-third">
+        <app-help-overview-column icon="user-plus" section="register">
+          <ng-container title>Anmeldung</ng-container>
+          <ng-container content>Wie registriere ich mich? Wie melde ich mich an?</ng-container>
+        </app-help-overview-column>
+      </div>
+      <div class="column is-one-third">
+        <app-help-overview-column icon="calender" section="appointments">
+          <ng-container title>Termine</ng-container>
+          <ng-container content>Wie trage ich einen Termin ein?</ng-container>
+        </app-help-overview-column>
+      </div>
+      <div class="column is-one-third">
+        <app-help-overview-column icon="map-pin-alt" section="location">
+          <ng-container title>Orte</ng-container>
+          <ng-container content>Wie trage ich einen Ort ein?</ng-container>
+        </app-help-overview-column>
+      </div>
+      <div class="column is-one-third">
+        <app-help-overview-column icon="map" section="navigation">
+          <ng-container title>Navigation</ng-container>
+          <ng-container content>Wie kann ich an einen Ort navigieren?</ng-container>
+        </app-help-overview-column>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section py-4">
+  <div class="container">
+    <hr>
+  </div>
+</section>
+
+<section class="section py-0" id="alexa-skill">
+  <div class="container">
+    <h3 class="is-size-3">
+      <span class="mr-1"><app-icon name="chat"></app-icon></span>
+      Alexa Skill
+    </h3>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Wie richte ich den Alexa Skill ein?</h4>
+    <p>
+      Öffne die Alexa App auf deinem Smartphone und suche dort den Skill "Termin Helfer". Installiere diesen.
+    </p>
+  </div>
+</section>
+
+<section class="section py-4">
+  <div class="container">
+    <hr>
+  </div>
+</section>
+
+<section class="section py-0" id="companion-app">
+  <div class="container">
+    <h3 class="is-size-3">
+      <span class="mr-1"><app-icon name="apps"></app-icon></span>
+      Begleit-App
+    </h3>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Wie richte ich die App ein?</h4>
+    <p>
+      Die Begleit-App ist rein Browser basiert, du kannst die in deinem Browser benutzen.
+      <br>
+      Möchtest du die App einfacher zugänglich machen, kannst du sie auf deinem Gerät installieren.
+    </p>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Installation auf dem Desktop</h4>
+    <p>
+      Benutzt du einen unterstützten Browser*, kannst du die App installieren.
+      <br>
+      <span class="is-size-7">*: Google Chrome, Microsoft Edge, Opera</span>
+    </p>
+    <figure class="image mt-3 mb-5">
+      <img src="/assets/images/help/pwa/pwa-install-chromium.png" alt="App unter Microsoft Edge installieren">
+    </figure>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Installation auf einem Apple iPhone, iPod oder iPad</h4>
+    <p>
+      Benutzt du einen Apple Gerät, kannst du die App auf deinem Startbildschirm hinzufügen.
+      <br>
+      Öffne dazu die App "Safari" und rufe diese Seite auf. Folge dann den unten gezeigten Schritten.
+    </p>
+    <div class="columns mt-3 mb-5">
+      <div class="column image-ios">
+        <figure class="image">
+          <img src="/assets/images/help/pwa/pwa-install-ios.png" alt="App unter Safari installieren">
+        </figure>
+      </div>
+      <div class="column image-ios">
+        <figure class="image">
+          <img src="/assets/images/help/pwa/pwa-install-ios-2.png" alt="App unter Safari installieren 2">
+        </figure>
+      </div>
+    </div>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Installation auf einem Android Gerät (WIP)</h4>
+    <p>
+      Benutzt du einen Android Gerät, kannst du die App auf deinem Startbildschirm hinzufügen.
+      <br>
+      Öffne dazu die App "Chrome" und rufe diese Seite auf. Klicke nun auf Installieren.
+    </p>
+  </div>
+</section>
+
+<section class="section py-4">
+  <div class="container">
+    <hr>
+  </div>
+</section>
+
+<section class="section py-0" id="register">
+  <div class="container">
+    <h3 class="is-size-3">
+      <span class="mr-1"><app-icon name="user-plus"></app-icon></span>
+      Anmeldung
+    </h3>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Wie registriere ich mich?</h4>
+    <p>
+      Klicke dazu oben in der Menüleiste auf "Registrieren". Die App leitet dich durch den Vorgang und gibt dir
+      Hinweise.
+      <br>
+      Merke dir deinen Nutzername und dein Passwort gut (oder schreibe beide auf). Du benötigst diese um dich
+      anzumelden.
+    </p>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Wie melde ich mich an?</h4>
+    <p>
+      Wenn du noch keinen Nutzer angelegt hast, registriere dich erst. Wie das geht erfährst du oben unter <strong>Wie
+      registriere ich mich?</strong>
+      <br>
+      Hast du einen Nutzer angelegt, klicke oben in der Menüleiste auf "Anmelden". Gib deinen Nutzernamen und dein
+      Passwort ein.
+      <br>
+      Hast du deine E-Mail Adresse noch nicht bestätigt oder fehlt noch die Verbindung zu deiner Alexa, leitet dich die
+      App durch diese Vorgänge.
+    </p>
+  </div>
+</section>
+
+<section class="section py-4">
+  <div class="container">
+    <hr>
+  </div>
+</section>
+
+<section class="section py-0" id="appointments">
+  <div class="container">
+    <h3 class="is-size-3">
+      <span class="mr-1"><app-icon name="calender"></app-icon></span>
+      Termine
+    </h3>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Wie trage ich einen Termin ein?</h4>
+    <p>
+      Sage zu deiner Alexa: <strong>Alexa, sage Termin Helfer: Richte einen neuen Termin ein</strong><br>
+      Alexa fragt dich dann ein paar Details. Danach wird dein Termin gespeichert. Nun taucht er in dieser App auf.
+    </p>
+  </div>
+</section>
+
+<section class="section py-4">
+  <div class="container">
+    <hr>
+  </div>
+</section>
+
+<section class="section py-0" id="location">
+  <div class="container">
+    <h3 class="is-size-3">
+      <span class="mr-1"><app-icon name="map-pin-alt"></app-icon></span>
+      Orte
+    </h3>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Wie trage ich einen Ort ein?</h4>
+    <p>
+      Sage zu deiner Alexa: <strong>Alexa, sage Termin Helfer: Trage einen neuen Ort ein</strong><br>
+      Alexa fragt dich dann ein paar Details. Danach wird dein Ort gespeichert. Nun taucht er in dieser App auf.
+    </p>
+  </div>
+</section>
+
+<section class="section py-4">
+  <div class="container">
+    <hr>
+  </div>
+</section>
+
+<section class="section py-0" id="navigation">
+  <div class="container">
+    <h3 class="is-size-3">
+      <span class="mr-1"><app-icon name="map"></app-icon></span>
+      Navigation
+    </h3>
+  </div>
+  <div class="container my-3">
+    <h4 class="is-size-4">Wie kann ich an einen Ort navigieren?</h4>
+    <p>
+      Wenn du einen Termin angelegt hast, öffne ihn in diese App. <br>
+      Klicke dazu oben in der Navigation auf <strong>Dein Tag</strong>. Dort siehst du den nächsten Termin und eine Liste von Terminen
+      <br>
+      Klickst du auf einen Termin, wird dir der Bereich Navigation angezeigt.
+      Hast du der App erlaubt deinen Standort abzufragen, werden dir mehrere Möglichkeiten zur Navigation angezeigt.
+      Klicke auf einen Button, um deinen bevorzugten Dienst zu öffnen.
+    </p>
+  </div>
+</section>

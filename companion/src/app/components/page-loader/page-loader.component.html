@@ -1,0 +1,12 @@
+<section class="section">
+  <div class="container">
+    <div class="is-flex is-flex-direction-column is-align-items-center">
+      <app-loader [isBig]="true"></app-loader>
+      <span class="mt-2 is-size-4">
+        <span data-test="text" #content><ng-content></ng-content></span>
+        <span data-test="text-default" *ngIf="!content.innerHTML.trim()">Lädt</span>
+      </span>
+
+    </div>
+  </div>
+</section>

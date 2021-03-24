@@ -1,0 +1,52 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Alexa verbinden</h1>
+    <h2 class="subtitle">Verbinde deine Alexa mit der App</h2>
+
+    <form action="#" [formGroup]="linkForm" (ngSubmit)="link($event)">
+      <div class="field">
+        <label for="linkId" class="label">Verbindungscode</label>
+        <div class="control">
+          <input type="text" class="input" id="linkId" name="linkId" placeholder="A1B2C3E" minlength="7" maxlength="7"
+                 required formControlName="linkId">
+        </div>
+      </div>
+
+      <div class="is-grouped is-flex is-align-items-center">
+        <div class="control">
+          <button type="submit" class="button is-primary" [ngClass]="{'is-loading': isLoading}"
+                  [disabled]="isLoading || linkForm.invalid">
+            <span class="icon">
+              <app-icon name="link"></app-icon>
+            </span>
+            <span>Verbinden</span>
+          </button>
+          <div class="has-text-danger ml-2" *ngIf="error$ | async">
+            {{error$ | async}}
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="container my-2">
+    <hr>
+  </div>
+  <div class="container ">
+    <div class="media">
+      <figure class="media-left">
+        <img src="/assets/images/logo-alexa.png" alt="Alexa Logo" class="image" width="64" height="64">
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <h4 class="is-bold">Woher kommt der Verbindungscode?</h4>
+          <p>
+            Der Verbindungscode wird benutzt um deinen Alexa Skill mit der App zu verknüpfen. <br>
+            Frage deine Alexa <em>"Frage Termin Helfer, wie lautet der Verbindungscode?"</em>. Alexa wird dir darauf hin
+            deinen persönlichen Code vorlesen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

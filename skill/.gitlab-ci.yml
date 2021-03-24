@@ -1,0 +1,83 @@
+.skill:
+  image: gradle:6.7.1-jdk11
+  variables:
+    GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    untracked: true
+    paths:
+      - skill/build
+      - skill/.gradle
+  artifacts:
+    untracked: true
+    expire_in: 30 mins
+  before_script:
+    - cd "skill"
+    - export GRADLE_USER_HOME=`pwd`/.gradle
+  only:
+    changes:
+      - "skill/**/*"
+
+build-skill:
+  stage: build
+  script:
+    - echo "Build Skill"
+    - gradle --build-cache assemble
+  extends:
+    - .skill
+
+build-uber-skill:
+  stage: build
+  script:
+    - echo "Build uber"
+    - gradle uber-jar
+  extends:
+    - .skill
+
+test-skill:
+  stage: test
+  script:
+    - echo "Execute JUnit"
+    - gradle test
+  extends:
+    - .skill
+
+coverage-skill:
+  stage: test
+  script:
+    - echo "Execute jacoco"
+    - gradle jacoco
+  extends:
+    - .skill
+
+sonarqube-skill:
+  stage: report
+  script:
+    - echo "Execute sonarqube"
+    - gradle test
+    - gradle jacoco
+    - gradle sonarqube -Dsonar.projectKey=$SONAR_PROJECT_KEY -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_LOGIN
+  extends:
+    - .skill
+  only:
+    refs:
+      - master
+    changes:
+      - "skill/**/*"
+
+deploy-skill:
+  stage: deploy
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  script:
+    - cd skill/
+    - aws sts get-caller-identity
+    - aws lambda update-function-code --function-name TerminHelferAlexa --publish --zip-file fileb://./build/libs/uber-HEAD-$CI_COMMIT_SHORT_SHA-1.0-SNAPSHOT.jar
+    - aws lambda update-function-code --function-name ReminderForDailyOverview --publish --zip-file fileb://./build/libs/uber-HEAD-$CI_COMMIT_SHORT_SHA-1.0-SNAPSHOT.jar
+    - aws lambda update-function-code --function-name TerminHelferNotification --publish --zip-file fileb://./build/libs/uber-HEAD-$CI_COMMIT_SHORT_SHA-1.0-SNAPSHOT.jar
+  dependencies:
+    - build-uber-skill
+  only:
+    refs:
+      - master
+    changes:
+      - "skill/**/*"

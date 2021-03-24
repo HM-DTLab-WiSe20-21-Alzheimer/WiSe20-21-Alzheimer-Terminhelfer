@@ -1,0 +1,34 @@
+<app-geolocation-popup></app-geolocation-popup>
+
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <div class="is-flex">
+        <div class="title mr-2">
+          <app-icon name="calender"></app-icon>
+        </div>
+        <div>
+          <h1 class="title">
+            Dein Tag {{firstname | async}}
+          </h1>
+          <h2 class="subtitle">
+            {{date}}
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        <app-next-card [appointment]="nextAppointment"></app-next-card>
+      </div>
+      <div class="column">
+        <app-overview-card></app-overview-card>
+      </div>
+    </div>
+  </div>
+</section>

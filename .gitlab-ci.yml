@@ -1,0 +1,11 @@
+stages:
+  - dependencies
+  - build
+  - test
+  - report
+  - deploy
+
+include:
+  - local: "/skill/.gitlab-ci.yml"
+  - local: "/companion/.gitlab-ci.yml"
+  - local: "/companion/amplify/backend/function/TerminHelferAppointment/.gitlab-ci.yml"

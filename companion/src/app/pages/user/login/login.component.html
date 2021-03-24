@@ -1,0 +1,36 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Anmelden</h1>
+    <h2 class="subtitle">Melde dich an, wenn du bereits einen Account hast</h2>
+
+    <form action="#" [formGroup]="loginForm" (ngSubmit)="login($event)">
+      <div class="field">
+        <label class="label" for="username">Nutzername</label>
+        <div class="control has-icons-left">
+          <input class="input" id="username" name="username" formControlName="username" type="text"
+                 placeholder="maxmusterman" required>
+          <span class="icon is-small is-left">
+            <app-icon name="user-circle"></app-icon>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label class="label" for="password">Passwort</label>
+        <div class="control has-icons-left">
+          <input class="input" id="password" name="password" formControlName="password" type="password"
+                 placeholder="******" required>
+          <span class="icon is-small is-left">
+            <app-icon name="key-skeleton"></app-icon>
+          </span>
+        </div>
+      </div>
+
+      <div class="is-grouped is-flex is-align-items-center">
+        <div class="control">
+          <button type="submit" class="button is-primary" [ngClass]="{'is-loading': isLoading}">Anmelden</button>
+        </div>
+        <div class="has-text-danger ml-2" *ngIf="error$ | async">{{(error$ | async)}}</div>
+      </div>
+    </form>
+  </div>
+</section>

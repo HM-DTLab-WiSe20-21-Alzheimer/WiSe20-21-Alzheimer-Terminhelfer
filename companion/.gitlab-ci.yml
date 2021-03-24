@@ -1,0 +1,61 @@
+.companion-folder:
+  before_script:
+    - cd "companion"
+  only:
+    changes:
+      - "companion/**/*"
+
+.companion-node-ops:
+  image: node:current
+  extends:
+    - .companion-folder
+  cache:
+    untracked: true
+    key: ${CI_COMMIT_REF_NAME}
+    paths:
+      - .npm-ng/
+  artifacts:
+    untracked: true
+    expire_in: 30 mins
+
+install-companion-deps:
+  stage: dependencies
+  script:
+    - npm ci --cache .npm-ng --prefer-offline
+  extends:
+    - .companion-node-ops
+
+test-companion:
+  stage: test
+  script:
+    - echo "Execute Jest"
+    - npm run-script test
+  dependencies:
+    - install-companion-deps
+  extends:
+    - .companion-node-ops
+
+coverage-companion:
+  stage: test
+  dependencies:
+    - install-companion-deps
+  script:
+    - echo "Execute Jest with Coverage"
+    - npm run-script test:coverage
+  extends:
+    - .companion-node-ops
+
+sonarqube-companion:
+  image: sonarsource/sonar-scanner-cli:latest
+  stage: report
+  dependencies:
+    - test-companion
+    - coverage-companion
+  script:
+    - echo "Report"
+    - sonar-scanner -Dsonar.projectKey=$SONAR_PROJECT_KEY_COMPANION -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.sources=.
+  extends:
+    - .companion-folder
+  only:
+    changes:
+      - "companion/**/*"

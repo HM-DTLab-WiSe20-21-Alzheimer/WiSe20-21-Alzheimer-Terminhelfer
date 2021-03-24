@@ -1,0 +1,16 @@
+@charset "UTF-8";
+@import "variables";
+
+$primary: $color-primary;
+
+@import "node_modules/bulma/bulma";
+
+.navbar-burger span {
+  top: initial !important;
+  height: auto !important;
+  left: initial !important;
+  transform-origin: initial;
+  width: auto;
+  background: transparent;
+  position: relative;
+}

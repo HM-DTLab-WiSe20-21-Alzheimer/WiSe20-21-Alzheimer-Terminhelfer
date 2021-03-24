@@ -1,0 +1,62 @@
+<section class="section">
+  <div class="container">
+    <h1 class="title">Registrieren</h1>
+    <h2 class="subtitle">Wenn du noch keinen Account hast, kannst du dich hier registrieren</h2>
+
+    <form action="#" [formGroup]="signUpForm" (ngSubmit)="signUp($event)">
+      <div class="field">
+        <label for="name" class="label">Vor- und Nachname</label>
+        <div class="control has-icons-left">
+          <input type="text" class="input" id="name" name="name" placeholder="Max Musterman" required
+                 formControlName="name">
+          <span class="icon is-small is-left">
+            <app-icon name="chat-bubble-user"></app-icon>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="username" class="label">Nutzername</label>
+        <div class="control has-icons-left">
+          <input type="text" class="input" id="username" name="username" placeholder="maxmusterman" required
+                 formControlName="username">
+          <span class="icon is-small is-left">
+            <app-icon name="user-circle"></app-icon>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="email" class="label">E-Mail</label>
+        <div class="control has-icons-left">
+          <input type="email" class="input" id="email" name="email" placeholder="maxmusterman@gmail.com" required
+                 formControlName="email">
+          <span class="icon is-small is-left">
+            <app-icon name="envelope"></app-icon>
+          </span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="password" class="label">Passwort</label>
+        <div class="control has-icons-left">
+          <input type="password" class="input" id="password" name="password" placeholder="********" required
+                 formControlName="password" minlength="8">
+          <span class="icon is-small is-left">
+            <app-icon name="key-skeleton"></app-icon>
+          </span>
+        </div>
+      </div>
+
+      <div class="is-grouped is-flex is-align-items-center">
+        <div class="control">
+          <button type="submit" class="button is-primary"
+                  [disabled]="isLoading || signUpForm.invalid"
+                  [ngClass]="{'is-loading': isLoading}"
+          >Registrieren
+          </button>
+        </div>
+        <div class="has-text-danger ml-2" *ngIf="error$ | async">
+          {{error$ | async}}
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

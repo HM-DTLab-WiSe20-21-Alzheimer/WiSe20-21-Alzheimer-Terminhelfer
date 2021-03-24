@@ -1,0 +1,62 @@
+{
+  "manifest": {
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:eu-central-1:051886484530:function:TerminHelferAlexa"
+        },
+        "interfaces": []
+      }
+    },
+    "events": {
+      "endpoint": {
+        "uri": "arn:aws:lambda:eu-central-1:051886484530:function:TerminHelferAlexa"
+      },
+      "publications": [
+        {
+          "eventName": "AMAZON.MessageAlert.Activated"
+        }
+      ],
+      "subscriptions": [
+        {
+          "eventName": "SKILL_PROACTIVE_SUBSCRIPTION_CHANGED"
+        }
+      ]
+    },
+    "manifestVersion": "1.0",
+    "permissions": [
+      {
+        "name": "alexa::devices:all:notifications:write"
+      }
+    ],
+    "privacyAndCompliance": {
+      "locales": {
+        "de-DE": {}
+      }
+    },
+    "publishingInformation": {
+      "automaticDistribution": {
+        "isActive": false
+      },
+      "category": "HEALTH_AND_FITNESS",
+      "distributionCountries": [],
+      "isAvailableWorldwide": true,
+      "locales": {
+        "de-DE": {
+          "description": "Der Skill, der dich unterstÔö£ÔòØtzt deine Termine einzuhalten",
+          "examplePhrases": [
+            "Alexa sage Termin Helfer, trage einen neuen Termin ein",
+            "Alexa frage Termin Helfer wie die App heiÔö£ãÆt",
+            "Alexa frage Termin Helfer nach Hilfe"
+          ],
+          "keywords": [],
+          "largeIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/e23f/ae13c6c289dd40f28f8010ed23bdc51d/APP_ICON_LARGE?  versionId=2TUwGUKiMSo84Oy9v9Sooivj8sSiql__&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210118T115759Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAWBV6LQ4QKQTYKJJO%2F20210118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=50bb039a69a7a593d327632152a2b0d5ab329c23092f1b3d14cfdb32365e2be4",
+          "name": "Termin Helfer",
+          "smallIconUri": "https://s3.amazonaws.com/CAPS-SSE/echo_developer/82e6/1e236c6353a6427bb1909e4e740a79cb/APP_ICON?versionId=mHyUAvGzHzvKyqx5TNJ2wwwsO8efjX8A&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210118T115759Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAWBV6LQ4QKQTYKJJO%2F20210118%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ee7374072e5f7e9dbb2c5471ab91923ede7a85f6e6ddb6d19cf117c3dfcfab09",
+          "summary": "Der Skill, der dich unterstÔö£ÔòØtzt deine Termine einzuhalten"
+        }
+      },
+      "testingInstructions": "Sample Testing Instructions."
+    }
+  }
+}
